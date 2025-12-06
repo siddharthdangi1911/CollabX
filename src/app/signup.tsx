@@ -13,6 +13,7 @@ export default function SignUp({ setpage }: { setpage: (page: string) => void })
   const handleSignUp = async () => {
     if (!email || !password) {
       alert("Please enter email and password")
+      return;
     }
     try {
       const res = await fetch("/api/signup", {
@@ -22,6 +23,7 @@ export default function SignUp({ setpage }: { setpage: (page: string) => void })
       });
 
       const data = await res.json();
+      console.log("Signup Response:", data);
       if (data.success) setpage("login");
       else alert(data.error);
     } catch (e) {
