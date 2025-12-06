@@ -81,7 +81,9 @@ export default function SignUp({ setpage }: { setpage: (page: string) => void })
 
       </div>
 
-      <BounceButton text="Sign Up" onClick={handleSignUp} />
+      <button onClick={handleSignUp} className="px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold shadow-md transition-shadow hover:shadow-lg">Sign Up</button>
+
+      {/* <BounceButton text="Sign Up" onClick={handleSignUp} /> */}
 
       <Hyperlinks setpage={() => setpage("login")} hyperText="Log In" />
     </div>
