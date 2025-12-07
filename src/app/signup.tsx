@@ -85,7 +85,7 @@ export default function SignUp({ setpage }: { setpage: (page: string) => void })
 
       {/* <BounceButton text="Sign Up" onClick={handleSignUp} /> */}
 
-      <Hyperlinks setpage={() => setpage("login")} hyperText="Log In" />
+      <Hyperlinks setpage={setpage} hyperText="Log In" />
     </div>
   );
 }
