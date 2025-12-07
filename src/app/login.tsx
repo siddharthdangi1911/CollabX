@@ -3,7 +3,7 @@ import Hyperlinks from "../../components/auth_hyperlinks";
 import BounceButton from "../../components/BounceButton";
 import { useState } from "react";
 import { Eye, EyeClosed } from "lucide-react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function LogIn({ setpage }: { setpage: (page: string) => void }) {
   const [showPass, setShowPass] = useState<boolean>(false);
