@@ -20,7 +20,7 @@ export default function Welcome() {
           Start your journey with us.
         </p>
 
-        <BounceButton text="Get Started" onClick={(page) => setPage("signup")} />
+        <BounceButton page="signup" buttonText="Get Started" onClick={setPage} />
 
         <Hyperlinks setpage={setPage} hyperText="Log In" />
       </div>
