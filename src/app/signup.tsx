@@ -3,7 +3,6 @@ import Hyperlinks from "../components/auth_hyperlinks";
 import BounceButton from "../components/BounceButton";
 import { Eye, EyeClosed } from "lucide-react";
 import { useState } from "react";
-import { adminAuth } from "@/lib/firebase/FirebaseAdmin";
 
 export default function SignUp({ setpage }: { setpage: (page: string) => void }) {
   const [showPass, setShowPass] = useState<boolean>(false);
