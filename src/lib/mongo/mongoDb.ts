@@ -17,7 +17,7 @@ export async function connectDB() {
   if (cached.conn) return cached.conn;
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect('${MONGODB_URI}/${DB_NAME}').then((mongoose) => {
+    cached.promise = mongoose.connect(`${MONGODB_URI}/${DB_NAME}`).then((mongoose) => {
       return mongoose;
     });
   }
