@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGODB_URI!;
+const DB_NAME = process.env.MONGODB_DB_NAME!;
 
 if (!MONGODB_URI) {
   throw new Error("Please add MONGODB_URI to .env.local");
@@ -16,7 +17,7 @@ export async function connectDB() {
   if (cached.conn) return cached.conn;
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI).then((mongoose) => {
+    cached.promise = mongoose.connect('${MONGODB_URI}/${DB_NAME}').then((mongoose) => {
       return mongoose;
     });
   }
