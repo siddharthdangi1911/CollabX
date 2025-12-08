@@ -3,8 +3,8 @@
 import { useState } from "react";
 import SignUp from "./signup";
 import LogIn from "./login";
-import Hyperlinks from "../../components/auth_hyperlinks";
-import BounceButton from "../../components/BounceButton";
+import Hyperlinks from "../components/auth_hyperlinks";
+import BounceButton from "../components/BounceButton";
 
 export default function Welcome() {
   const [page, setPage] = useState<string>("");

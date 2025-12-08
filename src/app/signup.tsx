@@ -1,20 +1,16 @@
-import Link from "next/link";
 import Image from "next/image";
-import Hyperlinks from "../../components/auth_hyperlinks";
-import BounceButton from "../../components/BounceButton";
+import Hyperlinks from "../components/auth_hyperlinks";
+import BounceButton from "../components/BounceButton";
 import { Eye, EyeClosed } from "lucide-react";
 import { useState } from "react";
+import { adminAuth } from "@/lib/firebase/FirebaseAdmin";
 
 export default function SignUp({ setpage }: { setpage: (page: string) => void }) {
   const [showPass, setShowPass] = useState<boolean>(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignUp = async () => {
-    if (!email || !password) {
-      alert("Please enter email and password")
-      return;
-    }
+  const signin = async () => {
     try {
       const res = await fetch("/api/signup", {
         method: "POST",
@@ -23,13 +19,12 @@ export default function SignUp({ setpage }: { setpage: (page: string) => void })
       });
 
       const data = await res.json();
-      console.log("Signup Response:", data);
-      if (data.success) setpage("login");
-      else alert(data.error);
-    } catch (e) {
-      alert("Sign Up Failed")
-    }
 
+      alert("Account created successfully");
+      setpage("login");
+    } catch (error: any) {
+      alert(error.message);
+    }
   };
 
   return (
@@ -81,9 +76,7 @@ export default function SignUp({ setpage }: { setpage: (page: string) => void })
 
       </div>
 
-      {/* <button onClick={handleSignUp} className="px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold shadow-md transition-shadow hover:shadow-lg">Sign Up</button> */}
-
-      <BounceButton buttonText="Sign Up" onClick={handleSignUp} />
+      <BounceButton buttonText="Sign Up" onClick={signin} />
 
       <Hyperlinks setpage={setpage} hyperText="Log In" />
     </div>

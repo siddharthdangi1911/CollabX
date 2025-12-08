@@ -1,16 +1,17 @@
 import { NextResponse } from "next/server";
-import { authAdmin, db } from "../../../../lib/FirebaseAdmin";
+import { adminAuth} from "@/lib/firebase/FirebaseAdmin";
+import { connectDB } from "@/lib/mongo/mongoDb";
+import User from "@/lib/model/User";
 
 export async function POST(req: Request) {
   try {
     const { email, password } = await req.json();
 
-    const user = await authAdmin.createUser({ email, password });
+    const user = await adminAuth.createUser({ email, password });
+    const uid = user.uid;
 
-    await db.collection("users").doc(user.uid).set({
-      email,
-      createdAt: Date.now(),
-    });
+    await connectDB();
+    await User.create({ uid, email });
 
     return NextResponse.json({ success: true });
   } catch (error: any) {

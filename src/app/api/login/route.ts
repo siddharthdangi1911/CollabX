@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../../lib/FirebaseClient";
+import { auth } from "../../../lib/FirebaseClient";
 
 export async function POST(req: Request) {
   try {
