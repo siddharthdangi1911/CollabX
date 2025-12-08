@@ -8,13 +8,14 @@ export default function SignUp({ setpage }: { setpage: (page: string) => void })
   const [showPass, setShowPass] = useState<boolean>(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
   const signin = async () => {
     try {
       const res = await fetch("/api/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email: email, password: password, name: name }),
       });
 
       const data = await res.json();
@@ -50,6 +51,14 @@ export default function SignUp({ setpage }: { setpage: (page: string) => void })
         Start your journey with us.
       </p>
       <div className="w-3/5 flex flex-col gap-4 mb-6">
+        <input
+          type="text"
+          placeholder="Display Name"
+          autoFocus
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        />
         <input
           type="email"
           placeholder="Email"

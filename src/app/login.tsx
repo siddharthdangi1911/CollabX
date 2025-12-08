@@ -4,6 +4,8 @@ import BounceButton from "../components/BounceButton";
 import { useState } from "react";
 import { Eye, EyeClosed } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/lib/firebase/FirebaseClient";
 
 export default function LogIn({ setpage }: { setpage: (page: string) => void }) {
   const [showPass, setShowPass] = useState<boolean>(false);
@@ -16,10 +18,13 @@ export default function LogIn({ setpage }: { setpage: (page: string) => void }) 
       alert("Please enter email and password")
     }
     try {
+
+      const userCred = await signInWithEmailAndPassword(auth, email, password);
+      const idToken = await userCred.user.getIdToken();
       const res = await fetch("/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ idToken: idToken }),
       });
 
       const data = await res.json();
