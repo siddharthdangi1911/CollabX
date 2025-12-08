@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { adminAuth} from "@/lib/firebase/FirebaseAdmin";
 import { connectDB } from "@/lib/mongo/mongoDb";
-import User from "@/lib/model/User";
+import User from "@/lib/mongo/model/User";
 import "server-only";
 
 export async function POST(req: Request) {
