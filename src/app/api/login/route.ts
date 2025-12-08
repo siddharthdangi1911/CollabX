@@ -1,22 +1,12 @@
 import { NextResponse } from "next/server";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../lib/FirebaseClient";
+import { adminAuth } from "@/lib/firebase/FirebaseAdmin";
 
 export async function POST(req: Request) {
   try {
     const { email, password } = await req.json();
-    const userCred = await signInWithEmailAndPassword(auth, email, password);
-
-    const token = await userCred.user.getIdToken();
+    const userCred = await adminAuth.getUserByEmail(email);
 
     const responce =  NextResponse.json({ success: true});
-
-    responce.cookies.set("token", token, {
-        httpOnly:true,
-        maxAge: 60 * 60 * 24 * 7,
-        secure: process.env.NODE_ENV === "production",
-        path: "/"
-    })
 
     return responce
   } catch (error: any) {
