@@ -18,11 +18,11 @@ export default function SignUp({ setpage }: { setpage: (page: string) => void })
       });
 
       const data = await res.json();
-      if (data.sucsess) {
+      if (data.success) {
         alert("Account created successfully");
         setpage("login");
       } else {
-        alert(data.error)
+        alert(data.error.message)
       }
     } catch (error: any) {
       alert(error.message);
