@@ -12,6 +12,11 @@ export async function POST(req: Request) {
 
     await connectDB();
     await User.create({ uid, email });
+    console.log({
+  project: process.env.FIREBASE_PROJECT_ID,
+  clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+  keyStart: process.env.FIREBASE_PRIVATE_KEY?.slice(0, 20)
+});
 
     return NextResponse.json({ success: true });
   } catch (error: any) {
