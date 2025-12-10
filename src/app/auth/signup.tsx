@@ -1,45 +1,38 @@
 import Image from "next/image";
-import Hyperlinks from "../components/auth_hyperlinks";
-import BounceButton from "../components/BounceButton";
-import { useState } from "react";
+import Hyperlinks from "@/app/components/auth_hyperlinks";
+import BounceButton from "@/app/components/BounceButton";
 import { Eye, EyeClosed } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/lib/firebase/FirebaseClient";
+import { useState } from "react";
 
-export default function LogIn({ setpage }: { setpage: (page: string) => void }) {
+export default function SignUp({ setpage }: { setpage: (page: string) => void }) {
   const [showPass, setShowPass] = useState<boolean>(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const router = useRouter();
+  const [name, setName] = useState("");
 
-  const handleLogIn = async () => {
-    if (!email || !password) {
-      alert("Please enter email and password")
-    }
+  const signin = async () => {
     try {
-
-      const userCred = await signInWithEmailAndPassword(auth, email, password);
-      const idToken = await userCred.user.getIdToken();
-      const res = await fetch("/api/login", {
+      const res = await fetch("/api/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ idToken: idToken }),
+        body: JSON.stringify({ email: email, password: password, name: name }),
       });
 
       const data = await res.json();
       if (data.success) {
-        router.push("/dashboard")
+        alert("Account created successfully");
+        setpage("login");
+      } else {
+        alert(data.error.message)
       }
-      else alert(data.error);
-    } catch (e) {
-      alert("Sign Up Failed")
+    } catch (error: any) {
+      alert(error.message);
     }
-
   };
 
   return (
-    <div className="w-2/5 flex flex-col justify-center items-center bg-white p-1 relative">
+    <div className="w-2/5 flex flex-col justify-center items-center bg-white p-10 relative">
+
       <button type="button" onClick={() => setpage("")}
         className="absolute left-5 top-5 p-2 rounded-full cursor-pointer transition-colors hover:bg-gray-200"
       >
@@ -51,11 +44,21 @@ export default function LogIn({ setpage }: { setpage: (page: string) => void }) 
           style={{ background: "transparent" }}
         />
       </button>
-      <h1 className="text-4xl font-bold mb-6 text-black">Log In</h1>
+
+      <h1 className="text-4xl font-bold mb-6 text-black">Sign Up</h1>
+
       <p className="text-lg mb-8 text-center text-gray-600">
         Start your journey with us.
       </p>
       <div className="w-3/5 flex flex-col gap-4 mb-6">
+        <input
+          type="text"
+          placeholder="Display Name"
+          autoFocus
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        />
         <input
           type="email"
           placeholder="Email"
@@ -84,9 +87,9 @@ export default function LogIn({ setpage }: { setpage: (page: string) => void }) 
 
       </div>
 
-      <BounceButton buttonText="Log In" onClick={handleLogIn} />
+      <BounceButton buttonText="Sign Up" onClick={signin} />
 
-      <Hyperlinks preffixText="Don't have an Account?" hyperText="Sign Up" setpage={setpage} />
+      <Hyperlinks setpage={setpage} hyperText="Log In" />
     </div>
   );
 }
