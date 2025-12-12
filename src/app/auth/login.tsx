@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Hyperlinks from "@/app/components/auth_hyperlinks";
-import BounceButton from "@/app/components/BounceButton";
+import Hyperlinks from "@/components/auth_hyperlinks";
+import BounceButton from "@/components/BounceButton";
 import { useState } from "react";
 import { Eye, EyeClosed } from "lucide-react";
 import { useRouter } from "next/navigation";
