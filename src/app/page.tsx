@@ -1,10 +1,9 @@
 "use client";
-
 import { useState } from "react";
 import SignUp from "@/app/auth/signup";
 import LogIn from "@/app/auth/login";
-import Hyperlinks from "./components/auth_hyperlinks";
-import BounceButton from "./components/BounceButton";
+import Hyperlinks from "@/components/auth_hyperlinks";
+import BounceButton from "@/components/BounceButton";
 
 export default function Welcome() {
   const [page, setPage] = useState<string>("");
