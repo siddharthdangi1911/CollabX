@@ -1,8 +1,7 @@
-export default function ChatsScreen() {
+export default function HomeScreen() {
     return (
         <div className="w-full h-full overflow-hidden flex bg-gray-100 rounded-t-lg">
-            <div className="h-full w-2/7 bg-gray-400">
-            </div>
+            <p>Home</p>
         </div>
     );
 }

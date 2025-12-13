@@ -1,46 +1,55 @@
 "use client";
-import { PanelTopOpen } from "lucide-react";
-import Item from "./navigation_item";
-import navItems from "@/app/dashboard/NavItems";
 
-type props = {
-    open: boolean,
-    onCloseAction: () => void
-};
-export default function SideNavBar({ open, onCloseAction }: props) {
+import { PanelTopOpen } from "lucide-react";
+import navItems from "@/app/dashboard/NavItems";
+import { useState } from "react";
+import clsx from "clsx";
+import { useNavigation } from "@/context/NavigationContext";
+
+export default function SideNavBar() {
+    const [open, setOpen] = useState(false);
+    const { setActive } = useNavigation();
+
     return (
         <>
-            <div className={`fixed flex flex-col top-0 left-0 h-full ${open ? "w-1/6 p-2" : "w-0 p-0"} overflow-hidden transition-all duration-300 rounded-br-2xl rounded-tr-2xl bg-[#181818] text-white z-20`}>
-                <div className="w-full h-20 flex items-center gap-3 rounded-2xl p-3">
-                    <div className="w-12 h-12 rounded-full aspect-square bg-[#303030] animate-pulse"></div>
-                    <div className="flex flex-col gap-2 flex-1">
-                        <div className="h-2.5 w-35 rounded bg-[#303030] animate-pulse"></div>
-                        <div className="h-2.5 w-30 rounded bg-[#303030] animate-pulse"></div>
-                    </div>
+            <div
+                className={clsx(
+                    "flex flex-col h-full bg-[#181818] text-white transition-all duration-300",
+                    open ? "w-64 p-2" : "w-14 p-1"
+                )}>
+                <div className="w-full h-14 flex items-center">
                     <button
-                        onClick={onCloseAction}
-                        className="w-10 h-10 rounded-lg flex items-center justify-center">
-                        <PanelTopOpen
-                            color="gray"
-                            className="w-6 h-6 transition-transform duration-300 hover:scale-115 hover:rotate-90" />
+                        onClick={() => setOpen(!open)}
+                        className="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-[#212121]"
+                    >
+                        <PanelTopOpen className="w-6 h-6 text-gray-400" />
                     </button>
                 </div>
-
-                <hr className="my-3 border-[#a5a4a4]" />
-
-                <nav className="w-full justify-center items-center flex-col flex gap-2 p-1">
+                <hr className="my-3 border-[#2a2a2a]" />
+                <nav className="flex flex-col gap-1">
                     {navItems.map((item) => (
-                        <Item key={item.label} {...item} />
+                        <div
+                            key={item.label}
+                            onClick={() => setActive(item.label)}
+                            className="flex items-center gap-4 px-3 py-2 rounded-xl hover:bg-[#212121] cursor-pointer">
+                            <item.icon className="w-6 h-6 shrink-0" />
+                            <span
+                                className={clsx(
+                                    "whitespace-nowrap transition-opacity",
+                                    open ? "opacity-100" : "opacity-0"
+                                )}>
+                                {item.label}
+                            </span>
+                        </div>
                     ))}
                 </nav>
             </div>
-
-            <div
-                onClick={onCloseAction}
-                className={`fixed top-0 left-0 w-full h-full bg-black transition-all duration-300 ${open ? "opacity-30 z-10" : "opacity-0 pointer-events-none"}`}>
-            </div>
+            {open && (
+                <div
+                    onClick={() => setOpen(false)}
+                    className="fixed inset-0 bg-black/30 z-10"
+                />
+            )}
         </>
     );
 }
-
-
