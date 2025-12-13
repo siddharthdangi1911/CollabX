@@ -1,15 +1,12 @@
 "use client";
-import { Home, PanelTopOpen, MessageCircle } from "lucide-react";
+import { PanelTopOpen } from "lucide-react";
 import Item from "./navigation_item";
+import navItems from "@/app/dashboard/NavItems";
+
 type props = {
     open: boolean,
     onCloseAction: () => void
 };
-
-const navItems = [
-    { label: "Home", icon: Home, onClick: () => { } },
-    { label: "Chats", icon: MessageCircle, onClick: () => { } },
-]
 export default function SideNavBar({ open, onCloseAction }: props) {
     return (
         <>
