@@ -7,7 +7,7 @@ const UserSchema = new mongoose.Schema(
         email: {type: String, required: true, unique:true},
         createdAt : {type: Date, default: Date.now}
     },
-    {collection: "users", _id: false}
+    {collection: "users", _id: false, versionKey: false}
 );
 
 export default mongoose.models.User || mongoose.model("User", UserSchema);

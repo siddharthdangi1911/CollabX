@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { adminAuth } from "@/lib/firebase/FirebaseAdmin";
+import { connectDB } from "@/lib/mongo/mongoDb";
+import User from "@/lib/mongo/model/User";
 
 export async function GET(request: Request) {
   try {
@@ -15,8 +17,16 @@ export async function GET(request: Request) {
     }
 
     const decoded = await adminAuth.verifyIdToken(idToken);
+    const uid = decoded.uid;
+    
+    await connectDB();
+    const data = await User.findById(uid).lean();
 
-    return NextResponse.json({ success: true , token : decoded});
+    if (!data) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ data });
   } catch (err: any) {
     return NextResponse.json(
       { error: "Invalid or expired token", details: err.message },

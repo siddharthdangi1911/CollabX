@@ -1,6 +1,7 @@
 "use client";
 import ChatsScreen from "./Chats";
 import HomeScreen from "./Home";
+import ProjectsScreen from "./Projects";
 import { useNavigation } from "@/context/NavigationContext";
 
 export default function Dashboard() {
@@ -9,6 +10,7 @@ export default function Dashboard() {
         <>
             {active === "Home" && <HomeScreen />}
             {active === "Chats" && <ChatsScreen />}
+            {active === "Projects" && <ProjectsScreen />}
         </>
     );
 }
