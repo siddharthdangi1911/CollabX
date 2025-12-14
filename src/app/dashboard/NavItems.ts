@@ -1,9 +1,10 @@
-import {Home, MessageCircle} from "lucide-react";
+import {Home, MessageCircle, BoxesIcon} from "lucide-react";
 
 
 const navItems = [
-    { label: "Home", icon: Home, onClick: () => { } },
-    { label: "Chats", icon: MessageCircle, onClick: () => { } },
+    { label: "Home", icon: Home},
+    { label: "Chats", icon: MessageCircle},
+    { label:"Projects", icon: BoxesIcon}
 ]
 
 export default navItems;

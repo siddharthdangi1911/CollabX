@@ -10,7 +10,7 @@ export default function RootLayout({
 }) {
     return (
         <NavigaitonProvider>
-            <section className="flex h-screen w-full overflow-hidden">
+            <section className="flex h-screen w-full relative overflow-hidden">
                 <SideNavBar />
                 <div className="flex flex-col flex-1 text-white">
                     <TopNavigationBar />
