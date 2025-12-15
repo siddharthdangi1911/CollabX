@@ -14,7 +14,7 @@ export default function RootLayout({
                 <SideNavBar />
                 <div className="flex flex-col flex-1 text-white">
                     <TopNavigationBar />
-                    <main className="flex-1 overflow-auto">
+                    <main className="flex-1 overflow-auto bg-[#181818]">
                         {children}
                     </main>
                 </div>
