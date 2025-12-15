@@ -1,10 +1,12 @@
 "use client";
 
-import { Search } from "lucide-react";
+import { Search, UserRound } from "lucide-react";
 import { useState } from "react";
+import { useNavigation } from "@/context/NavigationContext";
 
 export default function TopNavigationBar() {
     const [query, setQuery] = useState("");
+    const { setActive } = useNavigation();
 
     return (
         <nav className="h-14 flex items-center justify-between px-4 bg-[#181818]">
@@ -26,7 +28,9 @@ export default function TopNavigationBar() {
                 </button>
             </div>
 
-            <div className="w-10 h-10 bg-gray-300 rounded-full" />
+            <div className="w-10 h-10 bg-gray-300 rounded-full" >
+                <UserRound />
+            </div>
         </nav>
     );
 }

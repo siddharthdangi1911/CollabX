@@ -4,14 +4,14 @@ type props = {
     hyperText: string
 }
 
-export default function Hyperlinks({ setpage, preffixText = "Already have an account?", hyperText = "Log In" }: props) {
+export default function Hyperlinks({ setpage, hyperText = "Log In", preffixText = "Already have an account?" }: props) {
 
     var text = ""
     if (hyperText === "Log In") {
         text = "login"
     }
     if (hyperText === "Sign Up") {
-        text === "signup"
+        text = "signup"
     }
     return (
         <p className="mt-4 text-gray-700 text-sm">
