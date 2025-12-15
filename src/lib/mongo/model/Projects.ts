@@ -3,7 +3,7 @@ import mongoose, { mongo } from "mongoose";
 
 const ProjectsSchema = new mongoose.Schema(
     {
-        uid: {type:String, required:true},
+        uid: {type:mongoose.Schema.Types.ObjectId, ref:"Users", required:true, index:true},
         name: {type: String, required:true},
         about: {type:String},
         isfees:{type:Boolean, required: true},

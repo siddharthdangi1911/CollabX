@@ -1,6 +1,6 @@
 "use client";
 
-import { PanelTopOpen } from "lucide-react";
+import { PanelTopOpen, BookOpen } from "lucide-react";
 import navItems from "@/app/dashboard/NavItems";
 import { useState } from "react";
 import clsx from "clsx";
@@ -27,33 +27,41 @@ export default function SideNavBar() {
 
                 <hr className="my-3 border-[#2a2a2a]" />
 
-                <nav className="flex flex-col gap-1">
+                <nav className="flex flex-col gap-1 flex-1">
                     {navItems.map((item) => (
                         <div
                             key={item.label}
                             onClick={() => setActive(item.label)}
-                            className="flex items-center gap-4 px-3 py-2 rounded-xl hover:bg-[#212121] cursor-pointer"
-                        >
+                            className="flex items-center gap-4 px-3 py-2 rounded-xl hover:bg-[#212121] cursor-pointer">
                             <item.icon className="w-6 h-6 shrink-0" />
                             <span
                                 className={clsx(
                                     "transition-opacity whitespace-nowrap",
                                     open ? "opacity-100" : "opacity-0"
-                                )}
-                            >
+                                )}>
                                 {item.label}
                             </span>
                         </div>
                     ))}
+                    <div
+                        onClick={() => setActive("AboutUs")}
+                        className="mt-auto mb-1 flex items-center gap-4 px-3 py-2 rounded-xl hover:bg-[#212121] cursor-pointer">
+                        <BookOpen className="w-6 h-6 shrink-0" />
+                        <span
+                            className={`transition-opacity whitespace-nowrap ${open ? "opacity-100" : "opacity-0"}`}>
+                            About Us
+                        </span>
+                    </div>
                 </nav>
-            </div>
+            </div >
 
             {open && (
                 <div
                     onClick={() => setOpen(false)}
                     className="absolute top-0 left-full h-full w-screen bg-black/30 z-10"
                 />
-            )}
-        </div>
+            )
+            }
+        </div >
     );
 }
