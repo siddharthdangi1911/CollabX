@@ -8,7 +8,7 @@ import { useNavigation } from "@/context/NavigationContext";
 
 export default function SideNavBar() {
     const [open, setOpen] = useState(false);
-    const { setActive } = useNavigation();
+    const { active, setActive } = useNavigation();
 
     return (
         <div className="relative h-full">
@@ -31,8 +31,11 @@ export default function SideNavBar() {
                     {navItems.map((item) => (
                         <div
                             key={item.label}
-                            onClick={() => setActive(item.label)}
-                            className="flex items-center gap-4 px-3 py-2 rounded-xl hover:bg-[#212121] cursor-pointer">
+                            onClick={() => {
+                                if (active === item.label) return;
+                                setActive(item.label);
+                            }}
+                            className={`flex items-center gap-4 px-3 py-2 rounded-xl ${active === item.label ? "bg-[#505050]" : ""} hover:bg-[#212121] cursor-pointer`}>
                             <item.icon className="w-6 h-6 shrink-0" />
                             <span
                                 className={clsx(
@@ -44,8 +47,11 @@ export default function SideNavBar() {
                         </div>
                     ))}
                     <div
-                        onClick={() => setActive("AboutUs")}
-                        className="mt-auto mb-1 flex items-center gap-4 px-3 py-2 rounded-xl hover:bg-[#212121] cursor-pointer">
+                        onClick={() => {
+                            if (active === "AboutUs") return;
+                            setActive("AboutUs");
+                        }}
+                        className={`mt-auto flex items-center gap-4 px-3 py-2 rounded-xl ${active === "AboutUs" ? "bg-[#353535]" : ""} hover:bg-[#212121] cursor-pointer`}>
                         <BookOpen className="w-6 h-6 shrink-0" />
                         <span
                             className={`transition-opacity whitespace-nowrap ${open ? "opacity-100" : "opacity-0"}`}>
