@@ -7,7 +7,7 @@ export default function AboutScreen() {
             <section className="relative min-h-screen flex items-center justify-center bg-[#303030] rounded-t-lg">
                 <div className="absolute inset-0" />
                 <AnimatedSection>
-                    <div className="relative z-10 max-w-5xl text-center px-6">
+                    <div className="relative z-10 max-w-5xl text-center px-6 mx-auto">
                         <h1 className="text-6xl font-bold text-white mb-6">
                             Born from Collaboration
                         </h1>
