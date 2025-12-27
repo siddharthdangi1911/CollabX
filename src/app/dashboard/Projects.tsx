@@ -1,6 +1,7 @@
 import AnimatedSection from "@/components/AnimatedSection";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import ProjectCardSlot from "@/components/ProjectCardSlot";
 
 const cards = [
     { id: 1, title: "Project One" },
@@ -14,18 +15,45 @@ const extendedCards = [
     cards[0],
 ];
 
-async function getProjects() {
-    const res = (await fetch("/api/projects"));
-    const data = await res.json();
-    if (data.success) {
-        return data.projects;
+type Project = {
+    _id: string,
+    title: string,
+    description: string
+};
+
+async function getids(page: number) {
+    const ids: string[] = [];
+    for (let i = 0; i < 20; i++) {
+        ids.push(`id${i}`);
     }
-    return data.error;
+    // const res = await fetch(`/api/projects/ids?page=${page}`);
+    // const data = await res.json();
+    // if (data.success) {
+    //     return data.ids;
+    // }
+    // return data.error;
+    return ids;
 }
 
 export default function ProjectsScreen() {
     const [index, setIndex] = useState(1);
     const [isAnimating, setIsAnimating] = useState(true);
+    const [projectIds, setProjectIds] = useState<string[]>([]);
+    const [projects, setProjects] = useState<Record<string, Project>>({});
+    const [page, setPage] = useState<number>(1);
+
+    useEffect(() => {
+        async function loadIds() {
+            try {
+                const ids = await getids(page);
+                setProjectIds(prev => [...prev, ...ids]);
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        loadIds();
+    }, [page]);
 
     const next = () => {
         setIsAnimating(true);
@@ -90,10 +118,16 @@ export default function ProjectsScreen() {
                 </div>
             </section>
             <section className="flex bg-white flex-1">
-                <div className="h-screen w-3/5 bg-black">
-                    White section content
-                </div>
-                <div className="h-screen w-2/5 bg-gray-700">
+                <div className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-4">
+                    {/* {projectIds.map(id => (
+                        <ProjectCardSlot
+                            key={id}
+                            id={id}
+                            project={projects[id]}
+                            onLoad={project =>
+                                setProjects(prev => ({ ...prev, [id]: project }))
+                            } />
+                    ))} */}
                 </div>
             </section>
 

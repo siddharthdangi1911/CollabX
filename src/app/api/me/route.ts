@@ -11,8 +11,8 @@ export async function GET(request: Request) {
 
     if (!idToken) {
       return NextResponse.json(
-        { error: "No ID token found in cookies" },
-        { status: 401 }
+        { success:false, error: "No ID token found in cookies" },
+        { status: 401}
       );
     }
 
@@ -23,14 +23,14 @@ export async function GET(request: Request) {
     const data = await User.findById(uid).lean();
 
     if (!data) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
+      return NextResponse.json({success:false,  error: "User not found" }, { status: 404 });
     }
 
-    return NextResponse.json({ data });
+    return NextResponse.json({success:true,  data:data });
   } catch (err: any) {
     return NextResponse.json(
-      { error: "Invalid or expired token", details: err.message },
-      { status: 401 }
+      { success:false, error: "Invalid or expired token"},
+      { status: 401}
     );
   }
 }

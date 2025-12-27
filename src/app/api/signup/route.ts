@@ -9,13 +9,13 @@ export async function POST(req: Request) {
     const { email, password, name } = await req.json();
     const user = await adminAuth.createUser({ email: email, password: password, displayName: name});
     await connectDB();
-    await User.create({ _id: user.uid, name:name, email:email });
+    await User.create({ _id: user.uid, name:name, email:email});
 
 return NextResponse.json({ success: true });
   } catch (error: any) {
     console.error("SIGNUP ERROR:", error);
-      return NextResponse.json(
-        { success: false, error: error.message },
+    return NextResponse.json(
+        { success: false, error: error},
         { status: 400 }
     );
   }
