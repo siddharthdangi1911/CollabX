@@ -1,7 +1,14 @@
-export default function Project({ params }: { params: { projectid: string } }) {
+type Props = {
+    params: Promise<{ hostid: string }>;
+};
+
+export default async function HostDashboard({ params }: Props) {
+    const { hostid } = await params;
+
     return (
-        <div className="w-full h-full flex items-center justify-center bg-black">
-            <p className="text-6xl font-semibold text-white">Project ${params.projectid}</p>
+        <div>
+            <h1>Project Dashboard</h1>
+            <p>Project ID: {hostid}</p>
         </div>
     );
 }
