@@ -2,10 +2,15 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongo/mongoDb";
 import Projects from "@/lib/mongo/model/Projects";
 
-export async function GET(req:Request, {params}:{params: {projectid:string}}) {
+type Props = {
+    params: Promise<{ projectid: string }>;
+};
+
+export async function GET(req:Request, {params}: Props) {
     try{
         await connectDB();
-        const project = Projects.findById(params.projectid)
+        const projectid = await params;
+        const project = Projects.findById(projectid)
         if (!project){
             return NextResponse.json({success:false, error:"project Not Found"}, {status:404});
         }
