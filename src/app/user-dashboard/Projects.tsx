@@ -83,7 +83,7 @@ export default function ProjectsScreen() {
 
     return (
         <div className="min-h-screen bg-[#181818] flex flex-col">
-            <section className="relative bg-[#212121] h-[500px] rounded-t-lg">
+            <section className="relative bg-[#212121] h-[500px] rounded-tl-lg">
                 <div className="w-full h-full px-50 flex items-center justify-center">
                     <AnimatedSection>
                         <div className="relative w-full flex items-center gap-2">

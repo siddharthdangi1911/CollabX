@@ -15,7 +15,7 @@ export async function proxy(req: any) {
     await adminAuth.verifyIdToken(token);
 
     if (isAuthPage) {
-      return NextResponse.redirect(new URL("/dashboard", req.url));
+      return NextResponse.redirect(new URL("/user-dashboard", req.url));
     }
 
     return NextResponse.next(); 
@@ -29,6 +29,6 @@ export async function proxy(req: any) {
 export const config = {
   matcher: [
     "/",
-    "/dashboard/:path*",
+    "/user-dashboard/:path*",
   ],
 };

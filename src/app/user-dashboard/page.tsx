@@ -6,7 +6,7 @@ import ProfileScreen from "./Profile";
 import AboutScreen from "./AboutScreen";
 import { useNavigation } from "@/context/NavigationContext";
 
-export default function Dashboard() {
+export default function UserDashboard() {
     const { active } = useNavigation();
     return (
         <>

@@ -27,7 +27,7 @@ export default function ChatsScreen() {
     }, [index, fullText]);
 
     return (
-        <div className="w-full h-full overflow-hidden flex items-center justify-center bg-gray-100 rounded-t-lg">
+        <div className="w-full h-full overflow-hidden flex items-center justify-center bg-gray-100 rounded-tl-lg">
             <div className="flex items-center justify-center w-3/5 h-2/5 bg-[#353535] rounded-lg">
                 <p className="text-6xl text-white font-semibold tracking-wide">
                     {displayText}

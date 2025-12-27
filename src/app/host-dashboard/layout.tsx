@@ -1,0 +1,24 @@
+import SideNavBar from "@/components/side_nav_bar_host";
+import TopNavigationBar from "@/components/top_navigation_bar_host";
+import { NavigaitonProvider } from "@/context/NavigationContext";
+
+
+export default function RootLayout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
+    return (
+        <NavigaitonProvider>
+            <section className="flex h-screen w-full relative overflow-hidden">
+                <SideNavBar />
+                <div className="flex flex-col flex-1 text-white">
+                    <TopNavigationBar />
+                    <main className="flex-1 overflow-auto bg-[#181818]">
+                        {children}
+                    </main>
+                </div>
+            </section>
+        </NavigaitonProvider>
+    );
+}

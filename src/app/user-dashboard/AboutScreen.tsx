@@ -4,7 +4,7 @@ import TeamCard from "@/components/TeamCard";
 export default function AboutScreen() {
     return (
         <div className="bg-[#181818] text-gray-900">
-            <section className="relative min-h-screen flex items-center justify-center bg-[#303030] rounded-t-lg">
+            <section className="relative min-h-screen flex items-center justify-center bg-[#303030] rounded-tl-lg">
                 <div className="absolute inset-0" />
                 <AnimatedSection>
                     <div className="relative z-10 max-w-5xl text-center px-6 mx-auto">

@@ -1,7 +1,7 @@
 "use client";
 
 import { PanelTopOpen, BookOpen } from "lucide-react";
-import navItems from "@/app/user-dashboard/NavItems";
+import navItems from "@/app/host-dashboard/NavItems";
 import { useState } from "react";
 import clsx from "clsx";
 import { useNavigation } from "@/context/NavigationContext";
@@ -46,18 +46,6 @@ export default function SideNavBar() {
                             </span>
                         </div>
                     ))}
-                    <div
-                        onClick={() => {
-                            if (active === "AboutUs") return;
-                            setActive("AboutUs");
-                        }}
-                        className={`mt-auto flex items-center gap-4 px-3 py-2 rounded-xl ${active === "AboutUs" ? "bg-[#353535]" : ""} hover:bg-[#212121] cursor-pointer`}>
-                        <BookOpen className="w-6 h-6 shrink-0" />
-                        <span
-                            className={`transition-opacity whitespace-nowrap ${open ? "opacity-100" : "opacity-0"}`}>
-                            About Us
-                        </span>
-                    </div>
                 </nav>
             </div >
 

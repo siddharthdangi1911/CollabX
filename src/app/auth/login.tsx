@@ -29,7 +29,7 @@ export default function LogIn({ setpage }: { setpage: (page: string) => void }) 
 
       const data = await res.json();
       if (data.success) {
-        router.push("/dashboard")
+        router.push("/user-dashboard")
       }
       else alert(data.error);
     } catch (e) {
