@@ -1,14 +1,14 @@
 type Props = {
-    params: Promise<{ hostid: string }>;
+    params: Promise<{ projectid: string }>;
 };
 
-export default async function HostDashboard({ params }: Props) {
-    const { hostid } = await params;
+export default async function ProjectAbout({ params }: Props) {
+    const { projectid } = await params;
 
     return (
         <div>
             <h1>Project Dashboard</h1>
-            <p>Project ID: {hostid}</p>
+            <p>Project ID: {projectid}</p>
         </div>
     );
 }
