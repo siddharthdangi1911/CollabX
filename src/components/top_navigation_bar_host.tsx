@@ -1,6 +1,6 @@
 "use client";
 
-import { UserRound, Plus } from "lucide-react";
+import { UserRound, Contact } from "lucide-react";
 import { useNavigation } from "@/context/NavigationContext";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -33,9 +33,9 @@ export default function TopNavigationBar() {
             </div>
             <div className="flex items-center gap-3">
                 <div className="w-23 h-10 rounded-full border-2 border-black p-2 hover:bg-[#212121] hover:border-0">
-                    <div className="flex w-full h-full justify-start items-center cursor-default"
+                    <div className="flex w-full h-full justify-start items-center cursor-default gap-1.5"
                         onClick={redirectToUser}>
-                        <Plus className="w-7 h-7" />
+                        <Contact className="w-6 h-6" />
                         <span className="cursor-default">User</span>
                     </div>
                 </div>
